@@ -15,6 +15,41 @@ const logger = (req:Request,res:Response,next:NextFunction)=>{
 
 
 
+const userRouter = express.Router();
+app.use('/api/v1/users',userRouter)
+userRouter.get("/create-user",(req:Request,res:Response)=>{
+    const userData = req.body;
+    console.log(userData);
+    res.json({
+      success:true,
+      message:"user is created successfully",
+      data:userData
+    })
+})
+
+
+
+
+const courseRouter = express.Router();
+app.use("/api/v1/courses",courseRouter)
+courseRouter.get("/",courseRouter)
+
+courseRouter.post("/create-course",(req:Request,res:Response)=>{
+  const course = req.body;
+  console.log(course);
+  res.json({
+    success:true,
+    message:"course is created successfully",
+    data:course
+  })
+})
+
+
+
+
+
+
+
 
 
 app.get('/', logger,(req:Request, res:Response) => {
