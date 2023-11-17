@@ -8,10 +8,17 @@ const app = (0, express_1.default)();
 //persers
 app.use(express_1.default.json());
 app.use(express_1.default.text());
-app.get('/', (req, res) => {
+//middle wars
+const logger = (req, res, next) => {
+    console.log(req.url, req.method, req.hostname);
+    next();
+};
+app.get('/', logger, (req, res) => {
+    console.log(req.query);
+    // console.log(req.params);
     res.send('Hello Developers222!');
 });
-app.post('/', (req, res) => {
+app.post('/', logger, (req, res) => {
     console.log(req.body);
     res.json({
         "message": "sueccesfully get data"
